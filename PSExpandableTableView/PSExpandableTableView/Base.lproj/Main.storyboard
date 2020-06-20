@@ -10,7 +10,7 @@
         <!--Expandable TableView-->
         <scene sceneID="52h-a0-drE">
             <objects>
-                <viewController id="Nry-Ns-1Gk" customClass="PS_ExpandableTblVC" customModule="PSExpandableTableView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nry-Ns-1Gk" customClass="PS_ExpandableTblVC" customModule="Expandable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jTE-iO-CN5"/>
                         <viewControllerLayoutGuide type="bottom" id="nvW-Wd-vDA"/>
@@ -19,11 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c2j-ll-yBN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c2j-ll-yBN">
                                 <rect key="frame" x="10" y="108" width="394" height="754"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TblCell_ExpandItem" id="QFd-CX-iFe" customClass="TblCell_ExpandItem" customModule="PSExpandableTableView" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TblCell_ExpandItem" id="QFd-CX-iFe" customClass="TblCell_ExpandItem" customModule="Expandable" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="394" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QFd-CX-iFe" id="C0m-bg-kst">
@@ -44,6 +44,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="Yoz-dI-HVs" firstAttribute="leading" secondItem="C0m-bg-kst" secondAttribute="leading" constant="10" id="4pr-6w-OAs"/>
                                                 <constraint firstItem="Yoz-dI-HVs" firstAttribute="top" secondItem="C0m-bg-kst" secondAttribute="top" constant="10" id="Bl5-aS-mwx"/>
@@ -54,6 +55,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Yoz-dI-HVs" secondAttribute="bottom" constant="10" id="xsD-9P-qqK"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="lblName" destination="Yoz-dI-HVs" id="Zqo-cq-UMA"/>
                                             <outlet property="vwSeperator" destination="xqI-Gq-qTu" id="aFN-H8-ZfE"/>
@@ -87,7 +89,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Y09-dS-pUd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mcK-SU-jfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="cub-CR-eaG" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FuM-GF-Zld">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -99,6 +100,7 @@
                         <segue destination="Nry-Ns-1Gk" kind="relationship" relationship="rootViewController" id="sTj-HP-lK9"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcK-SU-jfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="-552"/>
         </scene>

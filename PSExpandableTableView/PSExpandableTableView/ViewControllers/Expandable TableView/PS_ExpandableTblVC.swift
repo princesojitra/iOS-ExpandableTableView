@@ -24,9 +24,13 @@ class PS_ExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        sectionNames = [ "iPhone", "iPad", "Apple Watch" ];
+        //dummy data
+        sectionNames = [ "iPhone", "iPad", "Apple Watch" ,"iPhone", "iPad", "Apple Watch","iPhone", "iPad", "Apple Watch" ];
         sectionItems = [ ["iPhone SE is designed with the following features to reduce its environmental impact", "iPhone 5s", "iPhone 6", "iPhone 6 Plus", "iPhone 7", "iPhone 7 Plus"],
+                         ["iPad Mini", "iPad Air 2", "Letting go of your old device is easy with Apple Trade In. If it’s in good shape, you can trade it in for Apple Store credit. If it’s not eligible for credit, we’ll recycle it responsibly at no cost to you. Good for you. Good for the planet.", "iPad Pro 9.7"],
+                         ["Apple Watch", "Final assembly supplier sites do not generate any waste sent to landfill", "Apple Watch 2 (Nike)"], ["iPhone SE is designed with the following features to reduce its environmental impact", "iPhone 5s", "iPhone 6", "iPhone 6 Plus", "iPhone 7", "iPhone 7 Plus"],
+                         ["iPad Mini", "iPad Air 2", "Letting go of your old device is easy with Apple Trade In. If it’s in good shape, you can trade it in for Apple Store credit. If it’s not eligible for credit, we’ll recycle it responsibly at no cost to you. Good for you. Good for the planet.", "iPad Pro 9.7"],
+                         ["Apple Watch", "Final assembly supplier sites do not generate any waste sent to landfill", "Apple Watch 2 (Nike)"],["iPhone SE is designed with the following features to reduce its environmental impact", "iPhone 5s", "iPhone 6", "iPhone 6 Plus", "iPhone 7", "iPhone 7 Plus"],
                          ["iPad Mini", "iPad Air 2", "Letting go of your old device is easy with Apple Trade In. If it’s in good shape, you can trade it in for Apple Store credit. If it’s not eligible for credit, we’ll recycle it responsibly at no cost to you. Good for you. Good for the planet.", "iPad Pro 9.7"],
                          ["Apple Watch", "Final assembly supplier sites do not generate any waste sent to landfill", "Apple Watch 2 (Nike)"]
         ];
@@ -141,9 +145,12 @@ extension PS_ExpandableTblVC {
             if (self.expandedSectionHeaderNumber == section) {
                 tableViewCollapeSection(section, imageView: imageView!)
             } else {
-                let cImageView = self.view.viewWithTag(kHeaderSectionTag + self.expandedSectionHeaderNumber) as? UIImageView
-                tableViewCollapeSection(self.expandedSectionHeaderNumber, imageView: cImageView!)
-                tableViewExpandSection(section, imageView: imageView!)
+               
+                if let cImageView = self.view.viewWithTag(kHeaderSectionTag + self.expandedSectionHeaderNumber) as? UIImageView {
+                    
+                    tableViewCollapeSection(self.expandedSectionHeaderNumber, imageView: cImageView)
+                    tableViewExpandSection(section, imageView: imageView!)
+                }
             }
         }
     }
