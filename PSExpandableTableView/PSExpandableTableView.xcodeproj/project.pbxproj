@@ -11,10 +11,12 @@
 		F14AEF3F245979D600DAA3CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14AEF3D245979D600DAA3CE /* Main.storyboard */; };
 		F14AEF41245979DC00DAA3CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F14AEF40245979DC00DAA3CE /* Assets.xcassets */; };
 		F14AEF44245979DC00DAA3CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14AEF42245979DC00DAA3CE /* LaunchScreen.storyboard */; };
-		F14AEF5024597A8C00DAA3CE /* PS_ExpandableTblVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14AEF4F24597A8C00DAA3CE /* PS_ExpandableTblVC.swift */; };
+		F14AEF5024597A8C00DAA3CE /* PS_MultipleExpandableTblVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14AEF4F24597A8C00DAA3CE /* PS_MultipleExpandableTblVC.swift */; };
 		F14AEF5524597AD000DAA3CE /* CustomSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14AEF5324597ACF00DAA3CE /* CustomSectionHeader.swift */; };
 		F14AEF5624597AD000DAA3CE /* CustomSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F14AEF5424597ACF00DAA3CE /* CustomSectionHeader.xib */; };
 		F14AEF5924597B5300DAA3CE /* TblCell_ExpandItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14AEF5824597B5300DAA3CE /* TblCell_ExpandItem.swift */; };
+		F165149C249DF6F20080E2BC /* PS_ExpandSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165149B249DF6F20080E2BC /* PS_ExpandSelectionVC.swift */; };
+		F165149F249DF75C0080E2BC /* PS_SingleExpandableTblVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F165149E249DF75C0080E2BC /* PS_SingleExpandableTblVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +26,12 @@
 		F14AEF40245979DC00DAA3CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F14AEF43245979DC00DAA3CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F14AEF45245979DC00DAA3CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F14AEF4F24597A8C00DAA3CE /* PS_ExpandableTblVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PS_ExpandableTblVC.swift; sourceTree = "<group>"; };
+		F14AEF4F24597A8C00DAA3CE /* PS_MultipleExpandableTblVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PS_MultipleExpandableTblVC.swift; sourceTree = "<group>"; };
 		F14AEF5324597ACF00DAA3CE /* CustomSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSectionHeader.swift; sourceTree = "<group>"; };
 		F14AEF5424597ACF00DAA3CE /* CustomSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSectionHeader.xib; sourceTree = "<group>"; };
 		F14AEF5824597B5300DAA3CE /* TblCell_ExpandItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblCell_ExpandItem.swift; sourceTree = "<group>"; };
+		F165149B249DF6F20080E2BC /* PS_ExpandSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PS_ExpandSelectionVC.swift; sourceTree = "<group>"; };
+		F165149E249DF75C0080E2BC /* PS_SingleExpandableTblVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PS_SingleExpandableTblVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,17 +78,19 @@
 		F14AEF4D24597A6900DAA3CE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F14AEF4E24597A7300DAA3CE /* Expandable TableView */,
+				F165149A249DF69A0080E2BC /* Expand Selection */,
+				F165149D249DF7300080E2BC /* Single Expandable TableView */,
+				F14AEF4E24597A7300DAA3CE /* Multiple Expandable TableView */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		F14AEF4E24597A7300DAA3CE /* Expandable TableView */ = {
+		F14AEF4E24597A7300DAA3CE /* Multiple Expandable TableView */ = {
 			isa = PBXGroup;
 			children = (
-				F14AEF4F24597A8C00DAA3CE /* PS_ExpandableTblVC.swift */,
+				F14AEF4F24597A8C00DAA3CE /* PS_MultipleExpandableTblVC.swift */,
 			);
-			path = "Expandable TableView";
+			path = "Multiple Expandable TableView";
 			sourceTree = "<group>";
 		};
 		F14AEF5124597A9A00DAA3CE /* Custom Views */ = {
@@ -111,6 +117,22 @@
 				F14AEF5824597B5300DAA3CE /* TblCell_ExpandItem.swift */,
 			);
 			path = "TableView Expand Cell";
+			sourceTree = "<group>";
+		};
+		F165149A249DF69A0080E2BC /* Expand Selection */ = {
+			isa = PBXGroup;
+			children = (
+				F165149B249DF6F20080E2BC /* PS_ExpandSelectionVC.swift */,
+			);
+			path = "Expand Selection";
+			sourceTree = "<group>";
+		};
+		F165149D249DF7300080E2BC /* Single Expandable TableView */ = {
+			isa = PBXGroup;
+			children = (
+				F165149E249DF75C0080E2BC /* PS_SingleExpandableTblVC.swift */,
+			);
+			path = "Single Expandable TableView";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +207,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F14AEF5024597A8C00DAA3CE /* PS_ExpandableTblVC.swift in Sources */,
+				F14AEF5024597A8C00DAA3CE /* PS_MultipleExpandableTblVC.swift in Sources */,
+				F165149C249DF6F20080E2BC /* PS_ExpandSelectionVC.swift in Sources */,
 				F14AEF5524597AD000DAA3CE /* CustomSectionHeader.swift in Sources */,
 				F14AEF5924597B5300DAA3CE /* TblCell_ExpandItem.swift in Sources */,
+				F165149F249DF75C0080E2BC /* PS_SingleExpandableTblVC.swift in Sources */,
 				F14AEF38245979D600DAA3CE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

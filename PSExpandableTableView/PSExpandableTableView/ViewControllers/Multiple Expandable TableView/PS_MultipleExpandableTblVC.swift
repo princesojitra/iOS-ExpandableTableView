@@ -1,6 +1,6 @@
 //
-//  PS_ExpandableTblVC.swift
-//  PSExpandableTableView
+//  PS_MultipleExpandableTblVC.swift
+//  PS_MultipleExpandableTblVC
 //
 //  Created by Prince Sojitra on 29/04/20.
 //  Copyright © 2020 Prince Sojitra. All rights reserved.
@@ -8,22 +8,26 @@
 
 import UIKit
 
-class PS_ExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PS_MultipleExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - @IBOutlet
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
     let kHeaderSectionTag: Int = 1000;
-    var expandedSectionHeaderNumber: Int = -1
     var expandedSectionHeader: UITableViewHeaderFooterView!
     var sectionItems: Array<Any> = []
     var sectionNames: Array<Any> = []
     
+    //For Expand Set - 1, For Collapse Set - 0
+    var expandedSections: Array<Any> = [1,0,0,0,0,0,0,0,0]
     
     // MARK: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.addBackButton()
+        
         //dummy data
         sectionNames = [ "iPhone", "iPad", "Apple Watch" ,"iPhone", "iPad", "Apple Watch","iPhone", "iPad", "Apple Watch" ];
         sectionItems = [ ["iPhone SE is designed with the following features to reduce its environmental impact", "iPhone 5s", "iPhone 6", "iPhone 6 Plus", "iPhone 7", "iPhone 7 Plus"],
@@ -53,6 +57,20 @@ class PS_ExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
+    func addBackButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(named: "BackArrowWhite"), for: .normal) // Image can be downloaded from here below link
+        backButton.setTitle("", for: .normal)
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    @IBAction func backAction(_ sender: UIButton) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     // MARK: - Tableview DataSource & Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,9 +90,10 @@ class PS_ExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.expandedSectionHeaderNumber == section) {
-            let arrayOfItems = self.sectionItems[section] as! NSArray
-            return arrayOfItems.count;
+        let isSectionExpanded  = self.expandedSections[section] as! Int
+        if (isSectionExpanded == 1) {
+            let sectionItems = self.sectionItems[section] as! NSArray
+            return sectionItems.count;
         } else {
             return 0;
         }
@@ -97,6 +116,11 @@ class PS_ExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewData
         let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "customSectionHeader") as! CustomSectionHeader
         header.lbltitle.text = self.sectionNames[section] as? String
         header.imageVwExpand.tag = kHeaderSectionTag + section
+        
+        let isSectionExpanded  = self.expandedSections[section] as! Int
+        if (isSectionExpanded == 1) {
+            header.imageVwExpand.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+        }
         
         //make headers touchable
         header.tag = section
@@ -130,7 +154,8 @@ class PS_ExpandableTblVC: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 // MARK: - Expand / Collapse Methods
-extension PS_ExpandableTblVC {
+extension PS_MultipleExpandableTblVC {
+    
     
     
     @objc func sectionHeaderWasTouched(_ sender: UITapGestureRecognizer) {
@@ -138,27 +163,25 @@ extension PS_ExpandableTblVC {
         let section    = headerView.tag
         let imageView = headerView.viewWithTag(kHeaderSectionTag + section) as? UIImageView
         
-        if (self.expandedSectionHeaderNumber == -1) {
-            self.expandedSectionHeaderNumber = section
-            tableViewExpandSection(section, imageView: imageView!)
-        } else {
-            if (self.expandedSectionHeaderNumber == section) {
-                tableViewCollapeSection(section, imageView: imageView!)
-            } else {
-               
-                if let cImageView = self.view.viewWithTag(kHeaderSectionTag + self.expandedSectionHeaderNumber) as? UIImageView {
-                    
-                    tableViewCollapeSection(self.expandedSectionHeaderNumber, imageView: cImageView)
-                    tableViewExpandSection(section, imageView: imageView!)
-                }
-            }
+        let isSectionExpanded = self.expandedSections[section] as! Int
+        
+        if isSectionExpanded == 1 {
+            //collapse
+            self.expandedSections[section] = 0
+            let cImageView = self.view.viewWithTag(kHeaderSectionTag + section) as? UIImageView
+            tableViewCollapeSection(section, imageView: cImageView!)
         }
+        else{
+            //expand
+            self.expandedSections[section] = 1
+            self.tableViewExpandSection(section, imageView: imageView!)
+        }
+        
     }
     
     func tableViewCollapeSection(_ section: Int, imageView: UIImageView) {
         let sectionData = self.sectionItems[section] as! NSArray
         
-        self.expandedSectionHeaderNumber = -1;
         if (sectionData.count == 0) {
             return;
         } else {
@@ -180,7 +203,6 @@ extension PS_ExpandableTblVC {
         let sectionData = self.sectionItems[section] as! NSArray
         
         if (sectionData.count == 0) {
-            self.expandedSectionHeaderNumber = -1;
             return;
         } else {
             UIView.animate(withDuration: 0.4, animations: {
@@ -191,7 +213,7 @@ extension PS_ExpandableTblVC {
                 let index = IndexPath(row: i, section: section)
                 indexesPath.append(index)
             }
-            self.expandedSectionHeaderNumber = section
+            
             self.tableView!.beginUpdates()
             self.tableView!.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
             self.tableView!.endUpdates()
