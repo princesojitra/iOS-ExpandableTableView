@@ -6,6 +6,6 @@ An expandable tableview is a tableview that “allows” its cells to expand and
 
 You can allow expanding single or multiple cell based on your requirements. 
 
-# Screenshots
+# Demo
 ![Expandable TableView Demo](https://media.giphy.com/media/hvBCU7xLkcYb4ysBMK/giphy.gif)
 
